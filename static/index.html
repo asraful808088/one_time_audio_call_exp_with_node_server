@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        background-color: black;
+      }
+      body > .call-box {
+        height: 600px;
+        width: 400px;
+        background-color: aqua;
+        position: relative;
+        border-radius: 10px;
+        margin-top: 50px;
+        overflow: hidden;
+      }
+      body > .call-box .user-list {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: rgb(60, 60, 61);
+        z-index: 111;
+      }
+      body > .call-box .user-list h1 {
+        text-align: center;
+        text-transform: capitalize;
+      }
+      body > .call-box .user-list .items {
+        height: 50px;
+        width: 90%;
+        margin: 0 auto;
+        position: relative;
+        font-size: 20px;
+        border-radius: 5px;
+        background: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: 0.5s;
+      }
+      body > .call-box .user-list .cross {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        transform: rotate(45deg) scale(1);
+        transition: 0.5s;
+        cursor: pointer;
+        color: aliceblue;
+      }
+      body > .call-box .call-box .list-out {
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        transform: scale(1);
+        transition: 0.5s;
+        cursor: pointer;
+        color: rgb(0, 0, 0);
+      }
+      body > .call-box .user-list .items:hover {
+        transform: scale(0.9);
+      }
+      body > .call-box > .call-box {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        background-color: rgb(255, 255, 255);
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+      }
+      body > .call-box > .call-box .header {
+        font-size: 25px;
+        text-transform: capitalize;
+      }
+      body > .call-box > .call-box .rigning {
+        display: none;
+      }
+      body > .call-box > .call-box .icon {
+        height: 100px;
+        width: 100px;
+        position: relative;
+        z-index: 11;
+      }
+      body > .call-box > .call-box .buttons {
+        display: flex;
+        width: 90%;
+        height: 50px;
+        position: relative;
+        justify-content: space-around;
+      }
+      body > .call-box > .call-box .buttons .button {
+        height: 50px;
+        width: 50px;
+        position: relative;
+        display: none;
+        cursor: pointer;
+      }
+      .error {
+        width: 300px;
+        height: auto;
+        padding: 10px;
+        position: fixed;
+        top: -100%;
+        transition: 1s;
+        color: red;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="call-box">
+      <div class="error" id="error">User name already used</div>
+      <div class="user-list" id="user-list">
+        <h1>all users</h1>
+        <h1 class="cross" onclick="listClose()">+</h1>
+        <br />
+      </div>
+      <div class="call-box">
+        <h1 class="list-out" id="list-out" onclick="listShow()">>></h1>
+        <div class="header" id="SCD">simple call demo</div>
+        <div class="rigning" id="rigning">rigning....</div>
+        <div class="icon">
+          <img
+            src="./assets/icon/call.png"
+            alt="call"
+            height="100%"
+            width="100%"
+          />
+        </div>
+        <audio id="other" autoplay></audio>
+        <div class="buttons">
+          <div class="button red-button" id="red-button">
+            <img
+              src="./assets/icon/red.png"
+              alt=""
+              height="100%"
+              width="100%"
+              onclick="callClose()"
+            />
+          </div>
+          <div class="button green-button" id="green-button">
+            <img
+              src="./assets/icon/green.png"
+              alt=""
+              height="100%"
+              width="100%"
+              onclick="callAns()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
